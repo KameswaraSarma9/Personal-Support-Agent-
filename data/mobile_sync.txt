@@ -1,0 +1,26 @@
+MOBILE APP SYNC AND OFFLINE MODE
+
+1. HOW SYNC WORKS
+The mobile app caches data locally and syncs with the server whenever a connection is available. Sync runs automatically every 60 seconds while the app is in the foreground, and on app open/resume.
+
+2. COMMON SYNC ISSUE: "PENDING CHANGES NOT SYNCING"
+This typically happens when the device has connectivity but the app's background sync token has expired. 
+Resolution steps:
+- Force-close and reopen the app to refresh the sync token.
+- Confirm the device is not in low-power mode, which can pause background network activity on iOS and Android.
+- Log out and log back in if the issue persists after restarting the app, as this regenerates the sync token from scratch.
+
+3. CONFLICT RESOLUTION
+If the same record is edited offline on two different devices, the app uses last-write-wins based on server timestamp at the time of sync. The losing version is saved to a "Conflict History" log accessible from Settings > Sync > Conflict History, so no data is permanently lost.
+
+4. OFFLINE MODE LIMITATIONS
+While offline, users can view cached data and create new records, but cannot perform actions that require server validation (e.g., applying a discount code, inviting a new team member). These actions are queued and executed once connectivity resumes.
+
+5. APP VERSION COMPATIBILITY
+Sync requires app version 4.2 or higher. Versions below 4.2 are no longer supported and will show a "Please Update" banner; sync is disabled entirely on unsupported versions.
+
+6. STORAGE LIMITS ON DEVICE
+The local cache is capped at 500MB. When exceeded, the oldest accessed records are evicted from cache (but remain on the server) to make room for new data.
+
+7. ESCALATION CRITERIA
+Escalate when: sync remains broken after all troubleshooting steps on an up-to-date app version, when a customer reports data loss (not just a sync delay), or when conflict history shows unexpected data being overwritten.

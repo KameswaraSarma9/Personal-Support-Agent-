@@ -1,0 +1,25 @@
+PLAN AND SUBSCRIPTION MANAGEMENT
+
+1. AVAILABLE PLANS
+- Free: Up to 2 projects, 1,000 API calls/month, community support only.
+- Standard ($49/month): Up to 20 projects, 100,000 API calls/month, email support with 24-hour response SLA.
+- Pro ($149/month): Unlimited projects, 1,000,000 API calls/month, priority email support with 4-hour response SLA.
+- Enterprise (custom pricing): Custom API limits, dedicated account manager, custom contract terms, 1-hour response SLA.
+
+2. UPGRADING A PLAN
+Upgrades take effect immediately upon confirmation. The price difference is prorated for the remainder of the current billing cycle and charged immediately.
+
+3. DOWNGRADING A PLAN
+Downgrades take effect at the end of the current billing cycle, not immediately. This prevents customers from losing access to features they have already paid for. If usage on the current plan exceeds the limits of the target downgrade plan (e.g., more than 20 projects when downgrading to Standard), the customer must reduce usage below the new plan's limits before the downgrade can be applied.
+
+4. SWITCHING BETWEEN MONTHLY AND ANNUAL BILLING
+Switching from monthly to annual billing is available at any time and applies a 20% discount, prorated against the remaining monthly cycle. Switching from annual to monthly is only available at the end of the current annual term.
+
+5. SEAT-BASED ADD-ONS
+Additional team member seats can be added to Standard and Pro plans at $15/seat/month, billed on the same cycle as the base plan. Removing seats takes effect at the next billing cycle.
+
+6. ENTERPRISE CONTRACT CHANGES
+Enterprise plan changes (custom limits, contract terms, multi-year agreements) cannot be self-served through the dashboard and must go through the assigned account manager.
+
+7. ESCALATION CRITERIA
+Escalate when: a downgrade is stuck due to a usage-limit conflict the customer cannot resolve themselves, when Enterprise contract terms need modification, or when a customer reports being charged for seats that were already removed.

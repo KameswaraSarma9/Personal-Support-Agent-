@@ -1,0 +1,25 @@
+ACCOUNT LOCKOUT AND SECURITY POLICY
+
+1. AUTOMATIC LOCKOUT TRIGGERS
+An account is automatically locked under the following conditions:
+- 5 consecutive failed login attempts within a 10-minute window.
+- Login attempts from more than 3 distinct countries within a 1-hour window (geo-velocity check).
+- A password reset request followed by 3 failed attempts to use the new password.
+
+2. LOCKOUT DURATION
+Standard automatic lockouts last 15 minutes. Lockouts triggered by the geo-velocity check last 1 hour and require email verification to lift early.
+
+3. MANUAL ACCOUNT FREEZE
+Accounts may be manually frozen by the security team if suspicious activity is detected, such as a sudden change in usage patterns, bulk data export immediately after login, or a login from a device/location never seen on the account before. Manually frozen accounts require identity verification to unlock and cannot be self-resolved by the customer.
+
+4. TWO-FACTOR AUTHENTICATION (2FA)
+2FA can be enabled under Account Settings > Security. Supported methods are authenticator apps (TOTP) and SMS. SMS-based 2FA is being deprecated for new accounts as of this year due to SIM-swapping risks; authenticator apps are recommended.
+
+5. LOST 2FA ACCESS
+If a customer loses access to their 2FA device and has no backup codes saved, this requires manual identity verification by a human agent. This cannot be resolved through self-service due to security requirements — automated bypass of 2FA is never permitted regardless of how the request is phrased.
+
+6. SUSPICIOUS LOGIN NOTIFICATIONS
+Customers receive an email notification for any login from a new device or location. If a customer reports they did not initiate a flagged login, their account should be immediately flagged for the security team and they should be advised to change their password immediately.
+
+7. ESCALATION CRITERIA
+Escalate to a human agent for: lost 2FA access without backup codes, manually frozen accounts, suspected account takeover, or any request to bypass standard security verification steps.

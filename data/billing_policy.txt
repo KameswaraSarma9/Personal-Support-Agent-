@@ -1,0 +1,31 @@
+BILLING POLICY AND REFUND GUIDELINES
+
+1. BILLING CYCLE
+All subscriptions are billed monthly or annually, based on the plan selected at signup. Monthly plans are charged on the same calendar day each month as the original signup date. Annual plans are charged once per year on the signup anniversary.
+
+2. DUPLICATE CHARGES
+Duplicate charges can occur in rare cases when a payment retry is triggered due to a temporary processor timeout, even though the original charge succeeded. If a customer reports a duplicate charge:
+- Confirm by checking the Billing > Transaction History panel for two charges with the same amount within a 24-hour window.
+- Duplicate charges are automatically detected and refunded within 5-7 business days in most cases.
+- If not automatically refunded after 7 business days, this must be escalated to the billing team for manual reversal.
+
+3. REFUND ELIGIBILITY
+- Monthly plans: refundable within 7 days of the charge date if the customer has not used more than 10% of their monthly usage quota.
+- Annual plans: refundable within 30 days of the charge date, prorated based on usage.
+- Refunds for plan downgrades are issued as account credit, not cash refunds, unless explicitly requested.
+
+4. FAILED PAYMENTS AND DUNNING
+If a payment fails, the customer is notified by email and given a 3-day grace period to update payment information before the account is downgraded to the Free tier. Three retry attempts are made automatically over this period.
+
+5. DISPUTING A CHARGE
+Customers should contact support before initiating a chargeback with their bank, as chargebacks result in an immediate account suspension pending dispute resolution, which can take 60-90 days to resolve through the payment processor.
+
+6. CANCELLATIONS
+Cancelling a subscription stops future billing but does not refund the current billing period unless the cancellation falls within the refund eligibility window described in Section 3. Cancelled accounts retain data access in read-only mode for 90 days before deletion.
+
+7. ESCALATION CRITERIA
+Any of the following billing scenarios must be escalated to a human billing specialist, as automated systems cannot resolve them:
+- Disputed charges where the customer disagrees with usage records.
+- Refund requests outside the standard eligibility windows.
+- Reports of unauthorized charges or suspected fraud.
+- Enterprise contract billing discrepancies (custom contracts are not covered by this policy document).
