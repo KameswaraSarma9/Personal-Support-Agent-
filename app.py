@@ -1,16 +1,6 @@
 """
 app.py
 Streamlit chat UI for the Persona-Adaptive Customer Support Agent.
-
-Displays, per the assignment's UI requirement (4.6):
-  - User message
-  - Detected persona
-  - Retrieved sources
-  - Generated response
-  - Escalation status
-
-Also supports multi-turn conversation memory (used by the escalation
-logic's "repeated frustration" trigger) as a bonus feature.
 """
 import sys
 from pathlib import Path
@@ -18,7 +8,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import streamlit as st
-
 from src import config
 from src.classifier import classify_customer_persona
 from src.rag_pipeline import RAGPipeline
@@ -36,12 +25,15 @@ PERSONA_BADGE = {
 
 @st.cache_resource(show_spinner=False)
 def get_pipeline():
-    return RAGPipeline()
+    rag = RAGPipeline()
+    if rag.collection.count() == 0:
+        rag.ingest_documents(str(config.DATA_DIR))
+    return rag
 
 
 def init_session_state():
     if "messages" not in st.session_state:
-        st.session_state.messages = []  # list of {role, message, persona, ...}
+        st.session_state.messages = []
     if "turn_count" not in st.session_state:
         st.session_state.turn_count = 0
 
@@ -56,12 +48,9 @@ def render_sidebar(pipeline):
             st.success("Gemini API key loaded.")
 
         try:
-            chunk_count = pipeline.count()
+            chunk_count = pipeline.collection.count()
             if chunk_count == 0:
-                st.warning(
-                    "Knowledge base index is empty. Run:\n\n"
-                    "`python ingest_knowledge_base.py`\n\nbefore chatting."
-                )
+                st.warning("Knowledge base index is empty.")
             else:
                 st.info(f"Knowledge base index: **{chunk_count}** chunks loaded.")
         except Exception as e:
@@ -130,16 +119,13 @@ def render_history():
 
 
 def process_turn(user_input: str, pipeline: RAGPipeline):
-    # 1. Persona classification
     with st.spinner("Classifying persona..."):
         classification = classify_customer_persona(user_input)
     persona = classification["persona"]
 
-    # 2. Retrieval
     with st.spinner("Retrieving relevant documents..."):
         context_chunks = pipeline.retrieve_context(user_input, top_k=config.TOP_K)
 
-    # 3. Escalation check (uses persona history from prior turns)
     history_personas = [
         {"persona": t.get("persona")} for t in st.session_state.messages if t["role"] == "assistant"
     ]
@@ -150,7 +136,6 @@ def process_turn(user_input: str, pipeline: RAGPipeline):
         conversation_history=history_personas,
     )
 
-    # 4. Generate response or build handoff
     if escalation_result["escalate"]:
         response_text = (
             "I want to make sure this gets handled correctly, so I'm connecting you with a "
@@ -205,7 +190,7 @@ def main():
             st.write(user_input)
 
         if not config.GEMINI_API_KEY:
-            st.error("Cannot process: GEMINI_API_KEY is missing. Set it in your .env file and restart.")
+            st.error("Cannot process: GEMINI_API_KEY is missing.")
             return
 
         result = process_turn(user_input, pipeline)
@@ -226,7 +211,7 @@ def main():
             st.markdown(f"**Detected Persona:** {badge} {result['persona']}")
 
             if result["escalated"]:
-                st.error(f"🚨 Escalated to human agent — reasons: {', '.join(result['escalation_reasons'])}")
+                st.error(f"🚨 Escalated — reasons: {', '.join(result['escalation_reasons'])}")
             else:
                 st.success("✅ Resolved by AI agent")
 
