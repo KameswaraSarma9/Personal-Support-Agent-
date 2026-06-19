@@ -27,7 +27,7 @@ PERSONA_BADGE = {
 def get_pipeline():
     rag = RAGPipeline()
     if rag.collection.count() == 0:
-        rag.ingest_documents(str(config.DATA_DIR))
+        rag.ingest_directory(config.DATA_DIR)
     return rag
 
 
